@@ -25,4 +25,28 @@ public class Lista {
         return mensaje;
     }
 
+    public int sumarTotalPaquetes(){
+        return totalPaquetes(0);
+    }
+
+    private int totalPaquetes(int indice){
+        if(serviEntrega.size()==indice)
+            return 0;
+        else{
+            return 1+totalPaquetes(indice+1);
+        }
+    }
+
+    public double sumarTotalPeso(){
+        return totalPeso(0);
+    }
+
+    private double totalPeso(int indice){
+        if(serviEntrega.size()==indice)
+            return 0;
+        else{
+            return serviEntrega.get(indice).getPeso()+totalPeso(indice+1);
+        }
+    }
+
 }

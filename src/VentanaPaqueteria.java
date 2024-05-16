@@ -11,6 +11,8 @@ public class VentanaPaqueteria {
     private JTextField textField1;
     private JButton agregarButton;
     private JTextField textField2;
+    private JButton totalPaquetesButton;
+    private JButton totalPesoButton;
     private Lista paquetes = new Lista();
     public VentanaPaqueteria(){
 
@@ -28,6 +30,20 @@ public class VentanaPaqueteria {
                 }catch(Exception ex){
                     JOptionPane.showMessageDialog(null,ex.getMessage());
                 }
+            }
+        });
+        totalPaquetesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"El total de paquetes es \n"+
+                    paquetes.sumarTotalPaquetes());
+            }
+        });
+        totalPesoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"El peso total del paquete es \n"+
+                        paquetes.sumarTotalPeso());
             }
         });
     }
