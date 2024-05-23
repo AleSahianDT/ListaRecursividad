@@ -2,10 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lista {
-    List<Paqueteria> serviEntrega;
+    private List<Paqueteria> serviEntrega;
 
     public Lista(){
         serviEntrega= new ArrayList<Paqueteria>();
+    }
+
+    public List<Paqueteria> getServiEntrega() {
+        return serviEntrega;
     }
 
     public void adicionarElemento(Paqueteria p)throws Exception{
@@ -48,5 +52,18 @@ public class Lista {
             return serviEntrega.get(indice).getPeso()+totalPeso(indice+1);
         }
     }
-
+    public double sumarTotalPesoCiudad(String ciudad){
+        return totalPesoCiudad(0,ciudad);
+    }
+    private double totalPesoCiudad(int indice, String ciudad) {
+        if (serviEntrega.size() == indice)
+            return 0;
+        else {
+            if (serviEntrega.get(indice).getCiudadRecepcion().equals(ciudad)) {
+                return serviEntrega.get(indice).getPeso() + totalPesoCiudad(indice + 1, ciudad);
+            } else {
+                return totalPesoCiudad(indice+1, ciudad);
+            }
+        }
+    }
 }
