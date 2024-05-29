@@ -3,6 +3,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class VentanaPaqueteria {
     private JPanel ventana;
@@ -20,7 +21,10 @@ public class VentanaPaqueteria {
     private JList list1;
     private JButton modificarButton;
     private JTextField textField3;
-    private JButton button1;
+    private JButton modificarEstadoButton;
+    private JButton ordenarPorBurbujaButton;
+    private JTextArea textArea1;
+    private JTextArea textArea2;
     private Lista paquetes = new Lista();
     public VentanaPaqueteria(){
         quemarDatos();
@@ -99,6 +103,20 @@ public class VentanaPaqueteria {
         for(Paqueteria pa: paquetes.getServiEntrega())
             dlm.addElement(pa);
         list1.setModel(dlm);
+    }
+    public void ordenarBurbuja(int array[]){
+        List<Paqueteria> paqueteriauxiliar;
+        paqueteriauxiliar = paquetes.getServiEntrega();
+        int size = paqueteriauxiliar.size();
+
+        for (int i=0; i < size -1; i++) {
+            boolean swapped = true;
+            for (int trancking = 0; trancking < size - i - 1; trancking++) {
+
+            }
+        }
+
+
     }
     public static void main(String[] args) {
         JFrame frame = new JFrame("VentanaPaqueteria");
