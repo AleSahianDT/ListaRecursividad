@@ -25,6 +25,7 @@ public class VentanaPaqueteria {
     private JButton ordenarPorBurbujaButton;
     private JTextArea textArea1;
     private JTextArea textArea2;
+    private JButton ordenarPorInsercciónButton;
     private Lista paquetes = new Lista();
     public VentanaPaqueteria(){
         quemarDatos();
@@ -39,6 +40,7 @@ public class VentanaPaqueteria {
                             textField1.getText()));
                     JOptionPane.showMessageDialog(null,"Paquete Agregado");
                     limpiarDatos();
+                    llenarJList();
                     System.out.println(paquetes.listarPaquetes());
                 }catch(Exception ex){
                     JOptionPane.showMessageDialog(null,ex.getMessage());
@@ -69,18 +71,29 @@ public class VentanaPaqueteria {
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(list1.getSelectedIndex()!=-1){
+                if (!e.getValueIsAdjusting()) {
+                    llenarJList();
                     int indice = list1.getSelectedIndex();
-                    Paqueteria pa = paquetes.getServiEntrega().get(indice);
-                    spinner1.setValue(pa.getTrancking());
-                    textField2.setText(""+pa.getPeso());
-                    comboBox2.setSelectedItem(pa.getCiudadRecepcion());
-                    comboBox1.setSelectedItem(pa.getCiudadEntrega());
-                    textField1.setText(pa.getCedulaReceptor());
+                    if (indice != -1) {
+                        Paqueteria pa = paquetes.getServiEntrega().get(indice);
+                        spinner1.setValue(pa.getTrancking());
+                        textField2.setText(String.valueOf(pa.getPeso()));
+                        comboBox2.setSelectedItem(pa.getCiudadRecepcion());
+                        comboBox1.setSelectedItem(pa.getCiudadEntrega());
+                        textField1.setText(pa.getCedulaReceptor());
+                    }
                 }
             }
         });
+        ordenarPorBurbujaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
+
+        //FUNCIONES
     public void limpiarDatos() {
         spinner1.setValue(0);
         textField2.setText("");
@@ -89,6 +102,7 @@ public class VentanaPaqueteria {
         textField1.setText("");
         comboBox3.setSelectedIndex(0);
     }
+
     public void quemarDatos(){
         try{
             paquetes.adicionarElemento(new Paqueteria(123,25,"Quito","Cuenca","1111111111"));
@@ -98,26 +112,40 @@ public class VentanaPaqueteria {
             //vacio
         }
     }
-    public void LlenarJList(){
+
+    public void llenarJList(){
         DefaultListModel dlm = new DefaultListModel();
         for(Paqueteria pa: paquetes.getServiEntrega())
             dlm.addElement(pa);
         list1.setModel(dlm);
     }
+
     public void ordenarBurbuja(int array[]){
         List<Paqueteria> paqueteriauxiliar;
         paqueteriauxiliar = paquetes.getServiEntrega();
         int size = paqueteriauxiliar.size();
-
+        //Ejecutar bucle dos veces
         for (int i=0; i < size -1; i++) {
+            //Registo de intercambios
             boolean swapped = true;
             for (int trancking = 0; trancking < size - i - 1; trancking++) {
+                //Orden descendiente
+                if (array[trancking] > array[trancking+1]) {
+                    //Intercambio
+                    int temp= array[trancking];
+                    array[trancking] = array[trancking+1];
+                    array[trancking+1] = temp;
 
+                    swapped = false;
+                }
             }
+            //Si no ha habido intercambio
+            if (swapped == true)
+                break;
         }
-
-
     }
+
+    //MAIN
     public static void main(String[] args) {
         JFrame frame = new JFrame("VentanaPaqueteria");
         frame.setContentPane(new VentanaPaqueteria().ventana);
