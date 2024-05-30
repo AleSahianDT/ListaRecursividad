@@ -1,13 +1,13 @@
 public class Paqueteria {
-    private int trancking;
+    private int tracking;
     private double peso;
     private String ciudadEntrega;
     private String ciudadRecepcion;
     private String cedulaReceptor;
     private String estado;
 
-    public Paqueteria(int trancking, double peso, String ciudadEntrega, String ciudadRecepcion, String cedulaReceptor) {
-        this.trancking = trancking;
+    public Paqueteria(int tracking, double peso, String ciudadEntrega, String ciudadRecepcion, String cedulaReceptor) {
+        this.tracking = tracking;
         this.peso = peso;
         this.ciudadEntrega = ciudadEntrega;
         this.ciudadRecepcion = ciudadRecepcion;
@@ -15,12 +15,12 @@ public class Paqueteria {
         this.estado = "Receptado";
     }
 
-    public int getTrancking() {
-        return trancking;
+    public int getTracking() {
+        return tracking;
     }
 
-    public void setTrancking(int trancking) {
-        this.trancking = trancking;
+    public void setTracking(int tracking) {
+        this.tracking = tracking;
     }
 
     public double getPeso() {
@@ -66,7 +66,7 @@ public class Paqueteria {
     @Override
     public String toString() {
         return "-----PAQUETERIA-----"+
-                "\nNumero de tracking: "+trancking+
+                "\nNumero de tracking: "+ tracking +
                 "\nPeso: "+peso+
                 "\nCiudad de entrega: "+ciudadEntrega+
                 "\nCiudad de receptcion: "+ciudadRecepcion+

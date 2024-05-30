@@ -17,7 +17,7 @@ public class Lista {
             serviEntrega.add(p);
         else{
             for(Paqueteria pa:serviEntrega)
-                if(pa.getTrancking()==p.getTrancking())
+                if(pa.getTracking()==p.getTracking())
                     throw new Exception("Paquete ya existe");
             serviEntrega.add(p);
         }
@@ -65,5 +65,13 @@ public class Lista {
                 return totalPesoCiudad(indice+1, ciudad);
             }
         }
+    }
+    public Paqueteria buscarLinealPorTracking(int tracking) {
+        for (Paqueteria pa : serviEntrega) {
+            if (pa.getTracking() == tracking) {
+                return pa;
+            }
+        }
+        return null;
     }
 }
